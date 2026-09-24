@@ -1,0 +1,10 @@
+{
+  "count": 369,
+  "pattern": "frames/frame_%04d.webp",
+  "active_clips": 2,
+  "clip1_end_frame": 128,
+  "clip2_start_frame": 144,
+  "clip1_fraction": 0.3469,
+  "transition_fraction": 0.3902,
+  "status": "Clips 1 and 2 active. Ready for Clip 3."
+}

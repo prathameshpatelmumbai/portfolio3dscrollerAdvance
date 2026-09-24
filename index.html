@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prathamesh Patel — AI Engineer & Creative Developer</title>
+  <meta name="description" content="Portfolio of Prathamesh Patel: Full-Stack AI Engineer, Smart India Hackathon Winner, Multi-Agent Systems & Computer Vision Developer.">
+
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css?v=hadaka6">
+</head>
+<body>
+
+  <!-- Top Navigation HUD -->
+  <header id="top-hud">
+    <div class="hud-brand">
+      <span class="hud-dot"></span>
+      <span class="hud-name">PRATHAMESH PATEL</span>
+      <span class="hud-badge">AI // FULL-STACK</span>
+    </div>
+
+    <div class="hud-telemetry">
+      <span class="hud-tag">SIH 2024 WINNER (1ST / 100K+)</span>
+      <span class="hud-separator">/</span>
+      <span class="hud-tag">GFG LPU CEO</span>
+      <span class="hud-separator">/</span>
+      <span id="hud-scroll-pct">00%</span>
+    </div>
+
+    <div class="hud-actions">
+      <!-- Add Clip 2 & Clip 3 Drawer Trigger -->
+      <button id="clip-drawer-btn" class="hud-btn" title="Add Clip 2 & Clip 3">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+        <span id="clip-status-label">CLIPS 1 &amp; 2 ACTIVE (CLIP 3 READY)</span>
+      </button>
+
+      <!-- Audio Feedback Toggle -->
+      <button id="sound-toggle" class="hud-btn" title="Toggle Sound Design">
+        <svg class="icon-sound-off" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+        <svg class="icon-sound-on" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        <span>AUDIO</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Video Clips Integration Modal -->
+  <div id="clip-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close-btn">&times;</button>
+      <div class="modal-header">
+        <p class="kicker">3-Clip Multi-Sequence Pipeline</p>
+        <h3>Clips 1 &amp; 2 Active &bull; Plug In Clip 3</h3>
+        <p class="modal-desc">Clip 1 (360&deg; Spin) and Clip 2 (Seedance Fluid Dynamics) are currently spliced with a 16-frame crossfade (369 master frames). Drop Clip 3 below to complete the trifecta.</p>
+      </div>
+
+      <div class="clips-status-grid">
+        <div class="clip-card active">
+          <span class="c-badge">ACTIVE</span>
+          <h4>Clip 1: 360&deg; Avatar Spin</h4>
+          <p>144 frames &bull; Identity &amp; Spin</p>
+        </div>
+        <div class="clip-card active">
+          <span class="c-badge">ACTIVE</span>
+          <h4>Clip 2: Seedance Dynamics</h4>
+          <p>225 frames &bull; Fluid Motion &amp; Flow</p>
+        </div>
+        <div class="clip-card pending">
+          <span class="c-badge">READY TO ADD</span>
+          <h4>Clip 3: Final Transition</h4>
+          <p>Drop or place in <code>assets/videos/</code></p>
+        </div>
+      </div>
+
+      <div id="drop-zone" class="drop-zone">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg>
+        <p class="drop-title">Drop <strong>Clip 3 (.mp4)</strong> here</p>
+        <p class="drop-sub">The system will auto-splice it into the master sequence</p>
+        <input type="file" id="video-file-input" accept="video/mp4,video/webm" style="display:none;">
+      </div>
+    </div>
+  </div>
+
+  <!-- Spider-Man x Futuristic Garage Fusion Loading Screen -->
+  <div id="loader" class="spidey-garage-loader">
+    <!-- Top Hydraulic Garage Blast Door -->
+    <div class="garage-door garage-door-top">
+      <div class="garage-metal-texture"></div>
+      <div class="garage-hazard-strip top-strip">
+        <span class="hazard-label">AUTONOMOUS GARAGE // BAY 07</span>
+        <span class="hazard-barcodes">||| | |||| | |||</span>
+      </div>
+      <div class="garage-panel-lines">
+        <div class="panel-slat"></div>
+        <div class="panel-slat"></div>
+        <div class="panel-slat"></div>
+      </div>
+      <div class="hydraulic-arm arm-top-left"></div>
+      <div class="hydraulic-arm arm-top-right"></div>
+      <div class="garage-seam seam-top"></div>
+    </div>
+
+    <!-- Bottom Hydraulic Garage Blast Door -->
+    <div class="garage-door garage-door-bottom">
+      <div class="garage-metal-texture"></div>
+      <div class="garage-seam seam-bottom"></div>
+      <div class="hydraulic-arm arm-bottom-left"></div>
+      <div class="hydraulic-arm arm-bottom-right"></div>
+      <div class="garage-panel-lines">
+        <div class="panel-slat"></div>
+        <div class="panel-slat"></div>
+        <div class="panel-slat"></div>
+      </div>
+      <div class="garage-hazard-strip bottom-strip">
+        <span class="hazard-label">HYDRAULIC PRESSURE // 4500 PSI</span>
+        <span class="hazard-barcodes">SYS_OK // PROTOCOL_V4.2</span>
+      </div>
+    </div>
+
+    <!-- Spider-Man Holographic Web Lattice Overlay -->
+    <div class="spidey-web-overlay">
+      <svg class="spider-web-svg" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+        <!-- Radial Web Strands -->
+        <line x1="500" y1="500" x2="0" y2="0" class="web-strand web-radial" />
+        <line x1="500" y1="500" x2="500" y2="0" class="web-strand web-radial" />
+        <line x1="500" y1="500" x2="1000" y2="0" class="web-strand web-radial" />
+        <line x1="500" y1="500" x2="1000" y2="500" class="web-strand web-radial" />
+        <line x1="500" y1="500" x2="1000" y2="1000" class="web-strand web-radial" />
+        <line x1="500" y1="500" x2="500" y2="1000" class="web-strand web-radial" />
+        <line x1="500" y1="500" x2="0" y2="1000" class="web-strand web-radial" />
+        <line x1="500" y1="500" x2="0" y2="500" class="web-strand web-radial" />
+        <!-- Concentric Web Rings -->
+        <polygon points="500,420 560,450 580,500 560,550 500,580 440,550 420,500 440,450" class="web-strand web-ring ring-1" />
+        <polygon points="500,340 620,380 660,500 620,620 500,660 380,620 340,500 380,380" class="web-strand web-ring ring-2" />
+        <polygon points="500,240 700,300 760,500 700,700 500,760 300,700 240,500 300,300" class="web-strand web-ring ring-3" />
+        <polygon points="500,120 800,200 880,500 800,800 500,880 200,800 120,500 200,200" class="web-strand web-ring ring-4" />
+      </svg>
+    </div>
+
+    <!-- Center Spider-Core HUD & Telemetry -->
+    <div class="spidey-hud-center">
+      <!-- Iron Spider / Tech Emblem -->
+      <div class="spidey-emblem-wrap">
+        <div class="emblem-hex-ring"></div>
+        <div class="emblem-spinner"></div>
+        <svg class="spidey-icon" viewBox="0 0 100 100" width="76" height="76" fill="none">
+          <path d="M50 30 L40 16 L34 20 L44 34 L30 36 L20 26 L16 32 L28 44 L14 52 L18 60 L32 50 L22 74 L28 78 L42 54 L46 62 L38 86 L46 88 L50 70 L54 88 L62 86 L54 62 L58 54 L72 78 L78 74 L68 50 L82 60 L86 52 L72 44 L84 32 L80 26 L70 36 L56 34 L66 20 L60 16 Z" fill="url(#spider-grad)" stroke="#ff2a5f" stroke-width="1.2" filter="url(#glow)"/>
+          <circle cx="50" cy="46" r="4.5" fill="#38bdf8" />
+          <defs>
+            <linearGradient id="spider-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ff1a4b" />
+              <stop offset="50%" stop-color="#38bdf8" />
+              <stop offset="100%" stop-color="#ff1a4b" />
+            </linearGradient>
+            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="3" result="blur" />
+              <feComposite in="SourceGraphic" in2="blur" operator="over" />
+            </filter>
+          </defs>
+        </svg>
+      </div>
+
+      <!-- Tech Diagnostics -->
+      <div class="spidey-telemetry">
+        <div class="suit-label">STARK // SPIDER-TECH PROTOCOL v4.2</div>
+        <h2 class="engineer-tag">PRATHAMESH PATEL</h2>
+        <div class="sub-protocol">SYSTEM: HIGH-FREQUENCY SPATIAL LAB &bull; BAY 07</div>
+      </div>
+
+      <!-- Nanotech Injection Progress Bar -->
+      <div class="spidey-progress-block">
+        <div class="nanotech-bar-frame">
+          <div class="nanotech-fill" id="loadbar"></div>
+          <div class="nanotech-shimmer"></div>
+        </div>
+        <div class="progress-meta">
+          <span id="load-pct-text" class="meta-pct">00%</span>
+          <span class="meta-status" id="load-status-text">INITIALIZING HYDRAULIC LOCKS...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═════════════════════════════════════════════════════════════════
+       STAGE 1: APPLE-STYLE 3D SCROLL CANVAS FILM
+       ═════════════════════════════════════════════════════════════════ -->
+  <div id="scroll-hero" class="scroll-track">
+    <div id="stage" class="sticky-stage">
+      <canvas id="film"></canvas>
+
+      <!-- Atmospheric Overlays -->
+      <div id="vignette"></div>
+      <div id="film-grain"></div>
+
+      <!-- Chapter Captions -->
+      <!-- Chapter 01: Centered Hero Identity -->
+      <div class="caption cap-center" id="cap-1">
+        <p class="cap-pre">01 // IDENTITY</p>
+        <h1 class="hero-name">PRATHAMESH <span class="cyan">PATEL</span></h1>
+        <p class="lead">Full-Stack AI Engineer &amp; Creative Developer. Engineering intelligence into real-time interactive systems.</p>
+      </div>
+
+      <!-- Chapter 02 -->
+      <div class="caption cap-left" id="cap-2">
+        <p class="cap-pre">02 // MULTI-AGENT SYSTEMS</p>
+        <h2>Autonomous<br><span class="cyan">Intelligence.</span></h2>
+        <p class="lead">Architect of event-driven multi-agent pipelines, automated SQL synthesis, and live WebSocket streaming systems.</p>
+        <div class="spec-callout">
+          <span>LANGCHAIN & AUTOGEN</span>
+          <span>FASTAPI & WEBSOCKETS</span>
+          <span>SQL SYNTHESIS</span>
+        </div>
+      </div>
+
+      <!-- Chapter 03 -->
+      <div class="caption cap-right" id="cap-3">
+        <p class="cap-pre">03 // GENERATIVE DYNAMICS</p>
+        <h2>Fluid Motion &<br><span class="cyan">Neural Dynamics.</span></h2>
+        <p class="lead">Synthesizing generative video intelligence, real-time spatial motion, and high-frequency interactive computing.</p>
+        <div class="spec-callout">
+          <span>SEEDANCE MOTION</span>
+          <span>DIFFUSION DYNAMICS</span>
+          <span>SPATIAL FLOW</span>
+        </div>
+      </div>
+
+      <!-- Chapter 04 -->
+      <!-- Chapter 04 -->
+      <div class="caption cap-left" id="cap-4">
+        <p class="cap-pre">04 // DISTINCTION & INNOVATION</p>
+        <h2>Smart India Winner &<br><span class="cyan">Touchless Spatial AI.</span></h2>
+        <p class="lead">Ranked 1st place nationwide out of 100,000+ engineers in SIH 2024. Architect of gesture-driven spatial computing and enterprise AI engines.</p>
+        <div class="spec-callout">
+          <span>RANK 1 / 100K+</span>
+          <span>SIH 2024 CHAMPION</span>
+          <span>GFG LPU CEO</span>
+          <span>AIR CANVAS CV</span>
+        </div>
+      </div>
+
+      <!-- Chapter 05 -->
+      <div class="caption cap-center" id="cap-5">
+        <p class="cap-pre">05 // EXPLORE THE WORK</p>
+        <h1>Enter the<br><span class="cyan">Spatial Lab.</span></h1>
+        <p class="lead">Scroll down to interact with my live 3D digital twin model and explore featured systems.</p>
+        <div class="cta-wrap">
+          <a class="cta-button" href="#model-lab">EXPLORE 3D AVATAR LAB &darr;</a>
+          <a class="cta-secondary" href="#projects">VIEW CASE STUDIES &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Scroll cue -->
+      <div id="scroll-cue">
+        <span class="cue-text">SCROLL TO ROTATE AVATAR</span>
+        <div class="cue-indicator"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═════════════════════════════════════════════════════════════════
+       STICKY NAV (Reveals after scroll film)
+       ═════════════════════════════════════════════════════════════════ -->
+  <nav id="brandnav">
+    <a href="#" class="mark">PRATHAMESH // PATEL</a>
+    <div class="nav-links">
+      <a href="#model-lab">3D Avatar</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="nav-cta" href="mailto:prathameshpatel.2020@gmail.com">GET IN TOUCH &rarr;</a>
+  </nav>
+
+  <!-- ═════════════════════════════════════════════════════════════════
+       STAGE 2: INTERACTIVE 3D GLB MODEL VIEWER (AFTER SCROLL FILM)
+       ═════════════════════════════════════════════════════════════════ -->
+  <main id="brand-content">
+
+    <section class="bp bp-model-section" id="model-lab">
+      <div class="model-header gsap-reveal">
+        <p class="kicker">3D DIGITAL TWIN // SPATIAL LAB</p>
+        <h2>Interactive 3D Avatar</h2>
+        <p class="lead">Rendered from my personal 3D scan, Draco compressed &amp; hosted on TinyGLB. Click &amp; drag to orbit, zoom, or toggle shading.</p>
+        
+        <!-- View Mode Switcher -->
+        <div class="model-view-switch">
+          <button id="view-mode-studio" class="vmode-btn active" title="Three.js Studio Canvas">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            <span>STUDIO 3D (THREE.JS)</span>
+          </button>
+          <button id="view-mode-tinyglb" class="vmode-btn" title="Official TinyGLB Viewer">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span>HOSTED TINYGLB VIEWER</span>
+          </button>
+          <a href="https://viewer.tinyglb.com/3111259274e54b63b2ca8e4dae2b0d48" target="_blank" rel="noopener" class="vmode-link" title="Open in TinyGLB Viewer">
+            <span>FULLSCREEN &nearr;</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="model-container gsap-reveal">
+        <!-- 3D Canvas (Three.js Studio) -->
+        <div id="canvas3d-container">
+          <div id="model-loading-indicator">
+            <span class="spinner"></span>
+            <span id="model-loading-text">DECODING 3D AVATAR (3.16MB DRACO)...</span>
+          </div>
+        </div>
+
+        <!-- Embedded TinyGLB Hosted Viewer -->
+        <div id="tinyglb-iframe-container" style="display:none; width: 100%; height: 100%; position: absolute; inset: 0; z-index: 5; background: #060709;">
+          <iframe id="tinyglb-iframe" src="about:blank" data-src="https://viewer.tinyglb.com/3111259274e54b63b2ca8e4dae2b0d48" style="width: 100%; height: 100%; border: none; background: #060709;" allow="accelerometer; camera; gyroscope; vr"></iframe>
+        </div>
+
+        <!-- 3D HUD Controls (For Studio Canvas) -->
+        <div class="model-hud" id="studio-hud">
+          <div class="hud-col">
+            <span class="hud-label">SHADING</span>
+            <button id="toggle-wireframe" class="mhud-btn">WIREFRAME</button>
+          </div>
+          <div class="hud-col">
+            <span class="hud-label">ROTATION</span>
+            <button id="toggle-autospin" class="mhud-btn active">AUTO-SPIN</button>
+          </div>
+          <div class="hud-col">
+            <span class="hud-label">LIGHTING</span>
+            <button id="toggle-light" class="mhud-btn">STUDIO KEY</button>
+          </div>
+          <div class="hud-col">
+            <span class="hud-label">RESET</span>
+            <button id="reset-camera" class="mhud-btn">CENTER</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════════════════════════════════════════════
+         HADAKA-INSPIRED KINETIC DUAL-TRACK MARQUEE
+         ═════════════════════════════════════════════════════════════════ -->
+    <section class="hadaka-marquee-section" aria-hidden="true">
+      <div class="marquee-track track-left">
+        <div class="marquee-content">
+          <span>CREATIVE INTELLIGENCE</span><span class="m-dot">&bull;</span>
+          <span>MULTI-AGENT REASONING</span><span class="m-dot">&bull;</span>
+          <span>3D SPATIAL COMPUTING</span><span class="m-dot">&bull;</span>
+          <span>SMART INDIA HACKATHON WINNER</span><span class="m-dot">&bull;</span>
+          <span>GFG LPU CEO</span><span class="m-dot">&bull;</span>
+          <span>FULL-STACK AI</span><span class="m-dot">&bull;</span>
+          <span>CREATIVE INTELLIGENCE</span><span class="m-dot">&bull;</span>
+          <span>MULTI-AGENT REASONING</span><span class="m-dot">&bull;</span>
+          <span>3D SPATIAL COMPUTING</span><span class="m-dot">&bull;</span>
+          <span>SMART INDIA HACKATHON WINNER</span><span class="m-dot">&bull;</span>
+        </div>
+      </div>
+      <div class="marquee-track track-right">
+        <div class="marquee-content">
+          <span class="jp-kanji">株式会社 裸</span><span class="m-dash">//</span>
+          <span>HIGH-FREQUENCY ARCHITECTURES</span><span class="m-dash">//</span>
+          <span>TOUCHLESS VISION 60FPS</span><span class="m-dash">//</span>
+          <span class="jp-kanji">自律型知能</span><span class="m-dash">//</span>
+          <span>ENTERPRISE SQL SYNTHESIS</span><span class="m-dash">//</span>
+          <span>INTERACTIVE SPATIAL WEBGL</span><span class="m-dash">//</span>
+          <span class="jp-kanji">株式会社 裸</span><span class="m-dash">//</span>
+          <span>HIGH-FREQUENCY ARCHITECTURES</span><span class="m-dash">//</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════════════════════════════════════════════
+         STAGE 3: 3D INTERACTIVE STACKING STORY & LEADERSHIP DECK
+         ═════════════════════════════════════════════════════════════════ -->
+    <section class="bp bp-stacking-section" id="about">
+      <div class="section-intro gsap-reveal">
+        <p class="kicker">01 // PHILOSOPHY &amp; PEDIGREE</p>
+        <h2 class="hadaka-giant-title">Architecting <span class="cyan">Intelligence.</span><br>Leading Communities.</h2>
+        <p class="hadaka-lead">Hover and explore the layered pillars of my engineering foundation, national honors, and executive leadership.</p>
+      </div>
+
+      <div class="stacking-deck">
+        <!-- Card 1: Manifesto -->
+        <div class="stack-card tilt-card" data-tilt>
+          <div class="sc-header">
+            <span class="sc-tag">01 // CORE MANIFESTO</span>
+            <span class="sc-badge">ENGINEERING DNA</span>
+          </div>
+          <h3 class="sc-title">Bridging autonomous AI with <span class="cyan">spatial human interaction.</span></h3>
+          <p class="sc-body">I architect systems where complex autonomous pipelines—multi-agent reasoning, computer vision, and real-time streaming—feel intuitive, fluid, and beautifully engineered. Code that scales from prototype to hundreds of thousands of users without compromise.</p>
+          <div class="sc-footer">
+            <div class="sc-pill">
+              <span class="pill-dot"></span>
+              <span>B.Tech in Computer Science &amp; Engineering &bull; Lovely Professional University (7.75 CGPA)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: SIH 2024 -->
+        <div class="stack-card tilt-card highlight-card" data-tilt>
+          <div class="sc-header">
+            <span class="sc-tag">02 // NATIONAL DISTINCTION</span>
+            <span class="sc-badge crown-badge">&#9733; RANK #1 WINNER</span>
+          </div>
+          <h3 class="sc-title">Smart India Hackathon 2024 <span class="cyan">National Champion</span></h3>
+          <p class="sc-body">Secured 1st position among <strong>1,00,000+ participants nationwide</strong> in the Smart India Hackathon 2024 Software Edition. Evaluated by the Ministry of Finance &amp; AICTE for engineering high-impact, production-ready software under high-stakes competitive conditions. Awarded ₹1,00,000 cash prize.</p>
+          <div class="sc-tags-row">
+            <span class="sc-chip">1ST PLACE / 100K+</span>
+            <span class="sc-chip">MINISTRY OF FINANCE</span>
+            <span class="sc-chip">AICTE RECOGNIZED</span>
+            <span class="sc-chip">₹1 LAKH CASH AWARD</span>
+          </div>
+        </div>
+
+        <!-- Card 3: GFG Leadership -->
+        <div class="stack-card tilt-card" data-tilt>
+          <div class="sc-header">
+            <span class="sc-tag">03 // EXECUTIVE LEADERSHIP</span>
+            <span class="sc-badge">COMMUNITY ARCHITECT</span>
+          </div>
+          <h3 class="sc-title">Chief Executive Officer &bull; <span class="cyan">GeeksforGeeks LPU</span></h3>
+          <p class="sc-body">Headed the official GeeksforGeeks Student Chapter at Lovely Professional University. Directed and executed <strong>20+ national technical hackathons, workshops, and coding arenas</strong>, mentoring 5,000+ developers and scaling community participation across India.</p>
+          <div class="sc-tags-row">
+            <span class="sc-chip">5,000+ COMMUNITY</span>
+            <span class="sc-chip">20+ HACKATHONS EXECUTED</span>
+            <span class="sc-chip">TECHNICAL MENTORSHIP</span>
+            <span class="sc-chip">GOOGLE CERTIFIED ANALYST</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════════════════════════════════════════════
+         STAGE 4: PINNED HORIZONTAL 3D PROJECTS SHOWCASE (HADAKA STYLE)
+         ═════════════════════════════════════════════════════════════════ -->
+    <section class="horizontal-projects-outer" id="projects">
+      <div class="h-projects-header">
+        <div>
+          <p class="kicker">02 // SELECTED WORKS</p>
+          <h2 class="hadaka-giant-title">Flagship <span class="cyan">Repositories</span></h2>
+        </div>
+        <div class="h-nav-controls">
+          <div class="h-scroll-hint">
+            <span class="hint-pulse"></span>
+            <span>SCROLL OR CLICK TO EXPLORE &rarr;</span>
+          </div>
+          <div class="h-nav-btns">
+            <button id="h-prev-btn" class="h-nav-arrow" title="Previous Project">&larr;</button>
+            <button id="h-next-btn" class="h-nav-arrow" title="Next Project">&rarr;</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="h-projects-viewport" id="h-projects-viewport">
+        <div class="h-projects-track" id="h-projects-track">
+
+          <!-- Project 01: InsightForge -->
+          <article class="h-project-card tilt-card" data-tilt data-project="insightforge">
+            <div class="hp-num-watermark">01</div>
+            <div class="hp-meta">
+              <span class="hp-tag">MULTI-AGENT AI // FULL-STACK</span>
+              <span class="hp-date">JUN 2026 - JUL 2026</span>
+            </div>
+            <h3 class="hp-title">InsightForge</h3>
+            <p class="hp-subtitle">Multi-Agent Business Intelligence &amp; Autonomous SQL Engine</p>
+            <p class="hp-desc">End-to-end data ingestion pipeline with CSV parsing, column normalization, schema inference, and SQLite persistence. Event-driven multi-agent orchestration covering planning, SQL generation, validation, and real-time WebSocket traces.</p>
+            
+            <div class="hp-tech-stack">
+              <span>React</span>
+              <span>FastAPI</span>
+              <span>Multi-Agent LLM</span>
+              <span>WebSockets</span>
+              <span>SQLite</span>
+              <span>Docker</span>
+            </div>
+
+            <div class="hp-actions">
+              <button class="hp-btn run-sim-btn" data-sim="insightforge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <span>RUN AGENT SIMULATOR</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Project 02: CareerPlus.cloud -->
+          <article class="h-project-card tilt-card" data-tilt data-project="careerplus">
+            <div class="hp-num-watermark">02</div>
+            <div class="hp-meta">
+              <span class="hp-tag">SAAS // COMPUTER VISION // AI</span>
+              <span class="hp-date">JUN 2024 - DEC 2024</span>
+            </div>
+            <h3 class="hp-title">CareerPlus.cloud</h3>
+            <p class="hp-subtitle">AI Video Interview SaaS &amp; Intelligent ATS Matcher</p>
+            <p class="hp-desc">Full-stack SaaS-based AI Video Interview Platform using the M.E.R.N stack. Built schema validation with React Hook Forms &amp; Zod, shadcn and Framer Motion, JWT cookie session management, MongoDB Aggregations, and Stripe billing.</p>
+            
+            <div class="hp-tech-stack">
+              <span>React</span>
+              <span>Node.js</span>
+              <span>Express</span>
+              <span>MongoDB</span>
+              <span>Framer Motion</span>
+              <span>Stripe API</span>
+              <span>Zod</span>
+            </div>
+
+            <div class="hp-actions">
+              <button class="hp-btn run-sim-btn" data-sim="careerplus">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <span>TEST RESUME PARSER</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Project 03: AirCanvas -->
+          <article class="h-project-card tilt-card" data-tilt data-project="aircanvas">
+            <div class="hp-num-watermark">03</div>
+            <div class="hp-meta">
+              <span class="hp-tag">BROWSER CV // SPATIAL GESTURES</span>
+              <span class="hp-date">APR 2026 - APR 2026</span>
+            </div>
+            <h3 class="hp-title">AirCanvas</h3>
+            <p class="hp-subtitle">Touchless 21-Landmark In-Air Gesture Whiteboard</p>
+            <p class="hp-desc">Touchless digital whiteboard utilizing JavaScript, HTML Canvas, and MediaPipe Hands detecting 21 hand landmarks directly in-browser. Features real-time gesture drawing, erasing, coordinate smoothing, and 60fps tracking.</p>
+            
+            <div class="hp-tech-stack">
+              <span>MediaPipe Hands</span>
+              <span>JavaScript</span>
+              <span>HTML5 Canvas</span>
+              <span>Tailwind CSS</span>
+              <span>Real-Time CV</span>
+            </div>
+
+            <div class="hp-actions">
+              <button class="hp-btn run-sim-btn" data-sim="aircanvas">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <span>TEST 21-PT SKELETON</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Project 04: Netflix Analytics -->
+          <article class="h-project-card tilt-card" data-tilt data-project="netflix">
+            <div class="hp-num-watermark">04</div>
+            <div class="hp-meta">
+              <span class="hp-tag">DATA SCIENCE // STRATEGIC EDA</span>
+              <span class="hp-date">AUG 2025 - AUG 2025</span>
+            </div>
+            <h3 class="hp-title">Netflix Global EDA</h3>
+            <p class="hp-subtitle">Strategic Content &amp; Distribution Analytics</p>
+            <p class="hp-desc">Exploratory data analysis on Netflix's global content catalog using Python (Pandas, Matplotlib, Seaborn). Uncovered release patterns, international distribution trends, and user engagement drivers for executive content strategy.</p>
+            
+            <div class="hp-tech-stack">
+              <span>Python</span>
+              <span>Pandas</span>
+              <span>NumPy</span>
+              <span>Matplotlib</span>
+              <span>Seaborn</span>
+              <span>Statistical Modeling</span>
+            </div>
+
+            <div class="hp-actions">
+              <button class="hp-btn run-sim-btn" data-sim="netflix">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <span>RUN PREDICTIVE EDA</span>
+              </button>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════════════════════════════════════════════
+         STAGE 5: HANDS-ON INTERACTIVE AGENT MATRIX REPL (PLAYGROUND)
+         ═════════════════════════════════════════════════════════════════ -->
+    <section class="bp bp-simulator-section" id="simulator">
+      <div class="simulator-header gsap-reveal">
+        <p class="kicker">03 // HANDS-ON INTERACTION</p>
+        <h2 class="hadaka-giant-title">Live System <span class="cyan">REPL Simulator</span></h2>
+        <p class="hadaka-lead">Click any command trigger below to execute live multi-agent orchestration, computer vision telemetry, or SQL synthesis.</p>
+        
+        <!-- Simulator Command Triggers -->
+        <div class="sim-command-bar">
+          <button class="sim-pill active" data-cmd="insightforge">
+            <span class="sp-dot"></span>
+            <span>01 // INSIGHTFORGE AGENT REASONING</span>
+          </button>
+          <button class="sim-pill" data-cmd="aircanvas">
+            <span class="sp-dot"></span>
+            <span>02 // AIRCANVAS 21-PT CV GESTURES</span>
+          </button>
+          <button class="sim-pill" data-cmd="sih">
+            <span class="sp-dot"></span>
+            <span>03 // SIH 2024 WINNING ARCHITECTURE</span>
+          </button>
+          <button class="sim-pill" data-cmd="careerplus">
+            <span class="sp-dot"></span>
+            <span>04 // CAREERPLUS RESUME ATS PIPELINE</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Cybernetic Glassmorphic Terminal -->
+      <div class="sim-terminal-window gsap-reveal">
+        <div class="sim-term-bar">
+          <div class="term-dots">
+            <span class="tdot red"></span>
+            <span class="tdot yellow"></span>
+            <span class="tdot green"></span>
+          </div>
+          <div class="term-title" id="sim-term-title">prathamesh-patel@agent-runtime:~/insightforge$ ./run-orchestrator.sh</div>
+          <div class="term-status">
+            <span class="live-dot"></span>
+            <span>ONLINE</span>
+          </div>
+        </div>
+
+        <div class="sim-term-body" id="sim-term-body">
+          <div class="term-line prompt"><span class="user-prompt">patel@system:~$</span> <span class="cmd-text" id="sim-active-cmd">insightforge --mode=multi-agent-orchestration --dataset=sales_q3.csv</span></div>
+          <div class="term-stream" id="sim-term-stream">
+            <!-- Simulated streaming lines generated by JavaScript -->
+          </div>
+          <div class="term-input-line">
+            <span class="user-prompt">patel@cli:~$</span>
+            <input type="text" id="sim-cli-input" class="sim-cli-input" placeholder="Type 1, 2, 3, 4, aircanvas, sih, clear, help..." autocomplete="off" spellcheck="false">
+            <button id="sim-cli-submit" class="sim-cli-btn">EXECUTE &crarr;</button>
+          </div>
+        </div>
+
+        <div class="sim-term-footer">
+          <div class="t-stat">LATENCY: <span id="sim-latency">14ms</span></div>
+          <div class="t-stat">AGENTS ACTIVE: <span id="sim-agents">4/4 (Planner, Synthesizer, Validator, Reporter)</span></div>
+          <div class="t-stat">MEMORY: <span id="sim-memory">256MB / SQLite VSS</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════════════════════════════════════════════
+         STAGE 6: INTERACTIVE FILTERABLE TECHNICAL ARSENAL
+         ═════════════════════════════════════════════════════════════════ -->
+    <section class="bp bp-skills-section" id="skills">
+      <div class="skills-header gsap-reveal">
+        <p class="kicker">04 // TECHNICAL ARSENAL</p>
+        <h2 class="hadaka-giant-title">Capability <span class="cyan">Matrix</span></h2>
+        <p class="hadaka-lead">Filter and explore my production toolchain across autonomous intelligence, distributed backends, and spatial graphics.</p>
+
+        <!-- Category Filter Tabs -->
+        <div class="skills-filter-nav">
+          <button class="sfilter-btn active" data-filter="all">ALL STACK</button>
+          <button class="sfilter-btn" data-filter="ai">AI &amp; MULTI-AGENTS</button>
+          <button class="sfilter-btn" data-filter="fullstack">FULL-STACK &amp; CLOUD</button>
+          <button class="sfilter-btn" data-filter="cv">COMPUTER VISION &amp; 3D</button>
+          <button class="sfilter-btn" data-filter="languages">LANGUAGES &amp; TOOLS</button>
+        </div>
+      </div>
+
+      <div class="skills-dynamic-grid" id="skills-grid">
+        <!-- Skill Item 1 -->
+        <div class="skill-tile tilt-card" data-cat="ai">
+          <div class="st-icon">&#9889;</div>
+          <h4>Multi-Agent Orchestration</h4>
+          <p>LangChain, AutoGen, CrewAI, event-driven agent planning &amp; automated tool synthesis.</p>
+          <span class="st-level">PRODUCTION ARCHITECTURE</span>
+        </div>
+
+        <!-- Skill Item 2 -->
+        <div class="skill-tile tilt-card" data-cat="cv">
+          <div class="st-icon">&#128065;</div>
+          <h4>MediaPipe &amp; OpenCV</h4>
+          <p>21-landmark hand gesture tracking, optical flow, coordinate smoothing &amp; spatial CV.</p>
+          <span class="st-level">60 FPS REAL-TIME</span>
+        </div>
+
+        <!-- Skill Item 3 -->
+        <div class="skill-tile tilt-card" data-cat="fullstack">
+          <div class="st-icon">&#9729;</div>
+          <h4>FastAPI &amp; WebSockets</h4>
+          <p>High-throughput asynchronous streaming backends, Pydantic schemas &amp; SQLite/Postgres.</p>
+          <span class="st-level">SUB-20MS LATENCY</span>
+        </div>
+
+        <!-- Skill Item 4 -->
+        <div class="skill-tile tilt-card" data-cat="fullstack">
+          <div class="st-icon">&#9881;</div>
+          <h4>React &amp; Next.js</h4>
+          <p>Modern TypeScript SPAs, Framer Motion, Lenis smooth scrolling &amp; UI component systems.</p>
+          <span class="st-level">INTERACTIVE FRONTENDS</span>
+        </div>
+
+        <!-- Skill Item 5 -->
+        <div class="skill-tile tilt-card" data-cat="cv">
+          <div class="st-icon">&#9651;</div>
+          <h4>Three.js &amp; WebGL</h4>
+          <p>Draco GLB 3D model loaders, OrbitControls, PBR studio lighting, and canvas shaders.</p>
+          <span class="st-level">SPATIAL COMPUTING</span>
+        </div>
+
+        <!-- Skill Item 6 -->
+        <div class="skill-tile tilt-card" data-cat="languages">
+          <div class="st-icon">&#128187;</div>
+          <h4>Python &amp; C++</h4>
+          <p>Core algorithmic mastery, memory optimization, data structures &amp; high-speed compute.</p>
+          <span class="st-level">CORE FOUNDATIONS</span>
+        </div>
+
+        <!-- Skill Item 7 -->
+        <div class="skill-tile tilt-card" data-cat="fullstack">
+          <div class="st-icon">&#128452;</div>
+          <h4>MongoDB &amp; PostgreSQL</h4>
+          <p>Complex aggregation pipelines, ACID transactions, relational indexing &amp; schema design.</p>
+          <span class="st-level">PERSISTENCE ENGINES</span>
+        </div>
+
+        <!-- Skill Item 8 -->
+        <div class="skill-tile tilt-card" data-cat="ai">
+          <div class="st-icon">&#128202;</div>
+          <h4>Data Analytics &amp; EDA</h4>
+          <p>Pandas, NumPy, Matplotlib, Seaborn, Tableau, PowerBI. Certified by Google.</p>
+          <span class="st-level">GOOGLE CERTIFIED</span>
+        </div>
+
+        <!-- Skill Item 9 -->
+        <div class="skill-tile tilt-card" data-cat="languages">
+          <div class="st-icon">&#128736;</div>
+          <h4>Docker, Git &amp; CI/CD</h4>
+          <p>Containerized microservices, branch management, Postman API testing &amp; AWS deployment.</p>
+          <span class="st-level">DEVOPS &amp; TOOLING</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════════════════════════════════════════════
+         STAGE 7: KINETIC STATS WITH ROLLING COUNTERS
+         ═════════════════════════════════════════════════════════════════ -->
+    <section class="bp bp-stats-section" id="achievements">
+      <div class="stats-glass-grid gsap-reveal">
+        <div class="h-stat-box tilt-card" data-tilt>
+          <div class="h-stat-num" data-target="1" data-prefix="#">#1</div>
+          <div class="h-stat-label">SMART INDIA HACKATHON</div>
+          <p class="h-stat-desc">Rank 1 Champion among 1,00,000+ national competitors across India.</p>
+        </div>
+
+        <div class="h-stat-box tilt-card" data-tilt>
+          <div class="h-stat-num" data-target="20" data-suffix="+">20+</div>
+          <div class="h-stat-label">TECH ARENAS &amp; HACKATHONS</div>
+          <p class="h-stat-desc">Led and judged as Chief Executive Officer of GeeksforGeeks LPU Club.</p>
+        </div>
+
+        <div class="h-stat-box tilt-card" data-tilt>
+          <div class="h-stat-num" data-target="7.75" data-decimal="true">7.75</div>
+          <div class="h-stat-label">B.TECH CGPA (CSE)</div>
+          <p class="h-stat-desc">Rigorous Computer Science curriculum at Lovely Professional University.</p>
+        </div>
+
+        <div class="h-stat-box tilt-card" data-tilt>
+          <div class="h-stat-num" data-target="100" data-suffix="%">100%</div>
+          <div class="h-stat-label">PRODUCTION VERIFIED</div>
+          <p class="h-stat-desc">Zero placeholder code. Real-time WebSockets, WebGL &amp; AI architectures.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════════════════════════════════════════════
+         STAGE 8: ULTRA-INTERACTIVE CONTACT HUD & RADAR
+         ═════════════════════════════════════════════════════════════════ -->
+    <section class="bp bp-contact-section" id="contact">
+      <div class="contact-hud-box gsap-reveal">
+        <div class="chud-top">
+          <div class="chud-beacon">
+            <span class="beacon-pulse"></span>
+            <span class="beacon-text">AVAILABLE FOR FULL-TIME ROLES &amp; AI ARCHITECTURE</span>
+          </div>
+          <div class="chud-loc">TITWALA, MAHARASHTRA / PHAGWARA, PUNJAB &bull; INDIA</div>
+        </div>
+
+        <h2 class="chud-title">Let&#39;s Engineer the <span class="cyan">Future Together.</span></h2>
+        <p class="chud-desc">Whether you need autonomous multi-agent pipelines, touchless computer vision systems, or high-performance full-stack web applications, let&#39;s talk.</p>
+
+        <!-- Interactive Direct Email Copy Bar -->
+        <div class="chud-email-bar">
+          <input type="text" readonly value="prathameshpatel.2020@gmail.com" id="copy-email-input" class="chud-email-text">
+          <button id="copy-email-btn" class="chud-copy-btn" title="Copy Email to Clipboard">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span id="copy-btn-text">COPY EMAIL</span>
+          </button>
+        </div>
+
+        <!-- Magnetic Social Platforms Grid -->
+        <div class="chud-links-grid">
+          <a href="mailto:prathameshpatel.2020@gmail.com" class="chud-link-card">
+            <span class="cl-icon">&#9993;</span>
+            <div class="cl-info">
+              <span class="cl-role">DIRECT INBOX</span>
+              <span class="cl-target">prathameshpatel.2020@gmail.com</span>
+            </div>
+            <span class="cl-arrow">&rarr;</span>
+          </a>
+
+          <a href="tel:+917977018649" class="chud-link-card">
+            <span class="cl-icon">&#9742;</span>
+            <div class="cl-info">
+              <span class="cl-role">TELEPHONE DIRECT</span>
+              <span class="cl-target">+91 7977018649</span>
+            </div>
+            <span class="cl-arrow">&rarr;</span>
+          </a>
+
+          <a href="https://linkedin.com/in/prathamesh-patel" target="_blank" rel="noopener" class="chud-link-card">
+            <span class="cl-icon">&#128279;</span>
+            <div class="cl-info">
+              <span class="cl-role">LINKEDIN PROFILE</span>
+              <span class="cl-target">in/prathamesh-patel</span>
+            </div>
+            <span class="cl-arrow">&nearr;</span>
+          </a>
+
+          <a href="https://github.com/prathamesh-patel" target="_blank" rel="noopener" class="chud-link-card">
+            <span class="cl-icon">&#128421;</span>
+            <div class="cl-info">
+              <span class="cl-role">GITHUB REPOSITORIES</span>
+              <span class="cl-target">github.com/prathamesh-patel</span>
+            </div>
+            <span class="cl-arrow">&nearr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Toast Notification -->
+    <div id="hud-toast" class="hud-toast">COPIED TO CLIPBOARD!</div>
+
+  </main>
+
+  <!-- Luxury Footer -->
+  <footer class="bp-footer">
+    <div class="cols">
+      <div class="col brand-col">
+        <div class="footer-logo">PRATHAMESH PATEL</div>
+        <p class="footer-tagline">Full-Stack AI Engineer & Creative Developer. Handcrafted with GSAP, Three.js & WebGL.</p>
+      </div>
+
+      <div class="col">
+        <h4>NAVIGATION</h4>
+        <a href="#scroll-hero">3D Scroll Film</a>
+        <a href="#model-lab">3D Avatar Lab</a>
+        <a href="#about">Philosophy</a>
+        <a href="#projects">Projects</a>
+      </div>
+
+      <div class="col">
+        <h4>PLATFORMS</h4>
+        <a href="https://github.com/prathamesh-patel" target="_blank">GitHub</a>
+        <a href="https://linkedin.com/in/prathamesh-patel" target="_blank">LinkedIn</a>
+        <a href="https://leetcode.com/prathamesh-patel" target="_blank">Leetcode</a>
+      </div>
+
+      <div class="col">
+        <h4>LOCATION</h4>
+        <p class="foot-info">Titwala, Maharashtra / Phagwara, Punjab</p>
+        <p class="foot-info">India &bull; Global Remote Available</p>
+      </div>
+    </div>
+
+    <div class="fine">
+      <p>&copy; 2026 PRATHAMESH PATEL. DESIGNED AS AN IMMERSIVE 3D SPATIAL EXPERIENCE.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts: Lenis + GSAP + Three.js + GLTFLoader -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  
+  <!-- Three.js (r160) Modern ES Modules with GLTFLoader & OrbitControls -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+
+  <!-- Application Logic -->
+  <script type="module" src="model-viewer.js"></script>
+  <script src="main.js?v=hadaka6"></script>
+</body>
+</html>

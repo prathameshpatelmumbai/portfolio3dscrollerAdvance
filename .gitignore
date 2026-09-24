@@ -1,0 +1,16 @@
+# System & Helper binaries
+powershell.exe
+powershell.cmd
+*.tmp
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+
+# OS artifacts
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
