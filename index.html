@@ -9,7 +9,7 @@
   <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css?v=hadaka6">
 </head>
@@ -374,200 +374,316 @@
     <!-- ═════════════════════════════════════════════════════════════════
          STAGE 3: 3D INTERACTIVE STACKING STORY & LEADERSHIP DECK
          ═════════════════════════════════════════════════════════════════ -->
-    <section class="bp bp-stacking-section" id="about">
+    <!-- ═════════════════════════════════════════════════════════════════
+         STAGE 3: STICKY SCROLL CARDS — PHILOSOPHY & PEDIGREE
+         ═════════════════════════════════════════════════════════════════ -->
+    <section class="bp bp-stacking-section sticky-scroll-section" id="about">
       <div class="section-intro gsap-reveal">
         <p class="kicker">01 // PHILOSOPHY &amp; PEDIGREE</p>
         <h2 class="hadaka-giant-title">Architecting <span class="cyan">Intelligence.</span><br>Leading Communities.</h2>
-        <p class="hadaka-lead">Hover and explore the layered pillars of my engineering foundation, national honors, and executive leadership.</p>
+        <p class="hadaka-lead">Scroll to explore the layered pillars of my engineering foundation, national honors, and executive leadership.</p>
       </div>
 
-      <div class="stacking-deck">
-        <!-- Card 1: Manifesto -->
-        <div class="stack-card tilt-card" data-tilt>
-          <div class="sc-header">
-            <span class="sc-tag">01 // CORE MANIFESTO</span>
-            <span class="sc-badge">ENGINEERING DNA</span>
-          </div>
-          <h3 class="sc-title">Bridging autonomous AI with <span class="cyan">spatial human interaction.</span></h3>
-          <p class="sc-body">I architect systems where complex autonomous pipelines—multi-agent reasoning, computer vision, and real-time streaming—feel intuitive, fluid, and beautifully engineered. Code that scales from prototype to hundreds of thousands of users without compromise.</p>
-          <div class="sc-footer">
-            <div class="sc-pill">
-              <span class="pill-dot"></span>
-              <span>B.Tech in Computer Science &amp; Engineering &bull; Lovely Professional University (7.75 CGPA)</span>
+      <!-- Sticky Scroll Cards Hint Header (Componentry UI Pattern) -->
+      <div class="sticky-cards-hint-bar gsap-reveal">
+        <div class="sc-hint-pill">
+          <span class="sc-hint-pulse"></span>
+          <span class="sc-hint-label">SCROLL TO EXPLORE PEDIGREE &amp; PHILOSOPHY</span>
+          <svg class="sc-hint-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
+        <div class="sc-deck-telemetry">
+          <span class="sc-current-card-num" id="scActiveNum">01</span>
+          <span class="sc-sep">/</span>
+          <span class="sc-total-card-num">04</span>
+          <span class="sc-telemetry-badge">CARD STACK ACTIVE</span>
+        </div>
+      </div>
+
+      <!-- Sticky Scroll Cards Deck -->
+      <div class="sticky-cards-stack" id="stickyCardsStack">
+
+        <!-- Card 1: Core Manifesto -->
+        <article class="sticky-card-item tilt-card" data-card-index="0" style="--card-index: 0;">
+          <div class="sc-inner-grid">
+            <div class="sc-content-col">
+              <div class="sc-header">
+                <span class="sc-tag">01 // CORE MANIFESTO</span>
+                <span class="sc-badge">ENGINEERING DNA</span>
+              </div>
+              <h3 class="sc-title">Bridging autonomous AI with <span class="cyan">spatial human interaction.</span></h3>
+              <p class="sc-body">I architect systems where complex autonomous pipelines—multi-agent reasoning, computer vision, and real-time streaming—feel intuitive, fluid, and beautifully engineered. Code that scales from prototype to hundreds of thousands of users without compromise.</p>
+              
+              <div class="sc-tags-row">
+                <span class="sc-chip">AUTONOMOUS AGENTS</span>
+                <span class="sc-chip">MULTI-MODEL REASONING</span>
+                <span class="sc-chip">SPATIAL COMPUTING</span>
+                <span class="sc-chip">HIGH-FREQUENCY ARCHITECTURES</span>
+              </div>
+
+              <div class="sc-footer">
+                <div class="sc-pill">
+                  <span class="pill-dot"></span>
+                  <span>B.Tech in Computer Science &amp; Engineering &bull; Lovely Professional University (7.75 CGPA)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="sc-visual-col">
+              <div class="sc-photo-frame">
+                <img src="assets/images/philosophy_manifesto.jpg" alt="Autonomous AI Systems and Spatial Computing Visualization" class="sc-photo-img" loading="lazy">
+                <div class="sc-photo-overlay">
+                  <div class="sc-photo-badge">
+                    <span class="photo-pulse-dot"></span>
+                    <span>ARCHITECTURE CORE</span>
+                  </div>
+                  <div class="sc-photo-caption">Autonomous Multi-Agent Orchestration &amp; Spatial WebGL</div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </article>
 
-        <!-- Card 2: SIH 2024 -->
-        <div class="stack-card tilt-card highlight-card" data-tilt>
-          <div class="sc-header">
-            <span class="sc-tag">02 // NATIONAL DISTINCTION</span>
-            <span class="sc-badge crown-badge">&#9733; RANK #1 WINNER</span>
+        <!-- Card 2: SIH 2024 National Champion (With User Provided Image) -->
+        <article class="sticky-card-item highlight-card tilt-card" data-card-index="1" style="--card-index: 1;">
+          <div class="sc-inner-grid">
+            <div class="sc-content-col">
+              <div class="sc-header">
+                <span class="sc-tag">02 // NATIONAL DISTINCTION</span>
+                <span class="sc-badge crown-badge">&#9733; RANK #1 WINNER &bull; SIH 2024</span>
+              </div>
+              <h3 class="sc-title">Smart India Hackathon 2024 <span class="amber">National Champion</span></h3>
+              <p class="sc-body">Secured 1st position among <strong>1,00,000+ participants nationwide</strong> in the Smart India Hackathon 2024 Software Edition. Evaluated by the Ministry of Finance &amp; AICTE for engineering high-impact, production-ready software under high-stakes competitive conditions. Awarded ₹1,00,000 cash prize.</p>
+              
+              <div class="sc-tags-row">
+                <span class="sc-chip crown-chip">1ST PLACE / 100K+ TEAMS</span>
+                <span class="sc-chip">MINISTRY OF FINANCE</span>
+                <span class="sc-chip">AICTE RECOGNIZED</span>
+                <span class="sc-chip crown-chip">₹1 LAKH CASH AWARD</span>
+                <span class="sc-chip">NATIONAL FINALE</span>
+              </div>
+
+              <div class="sc-footer">
+                <div class="sc-pill sc-pill-gold">
+                  <span class="pill-dot gold-dot"></span>
+                  <span>Grand Finale 2024 &bull; AICTE Nodal Center &bull; Software Edition Joint-Winner</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="sc-visual-col">
+              <div class="sc-photo-frame sc-photo-frame-champion">
+                <img src="assets/images/hackathon_win.jpg" alt="Smart India Hackathon 2024 National Champion Joint-Winner Award Ceremony" class="sc-photo-img" loading="lazy">
+                <div class="sc-photo-overlay">
+                  <div class="sc-photo-badge gold-badge">
+                    <span class="photo-pulse-dot gold-pulse"></span>
+                    <span>NATIONAL CHAMPION // SIH 2024</span>
+                  </div>
+                  <div class="sc-photo-caption">Prathamesh Patel &amp; Team &bull; Grand Finale Joint-Winner Trophy &amp; ₹50,000+ Honors</div>
+                </div>
+              </div>
+            </div>
           </div>
-          <h3 class="sc-title">Smart India Hackathon 2024 <span class="cyan">National Champion</span></h3>
-          <p class="sc-body">Secured 1st position among <strong>1,00,000+ participants nationwide</strong> in the Smart India Hackathon 2024 Software Edition. Evaluated by the Ministry of Finance &amp; AICTE for engineering high-impact, production-ready software under high-stakes competitive conditions. Awarded ₹1,00,000 cash prize.</p>
-          <div class="sc-tags-row">
-            <span class="sc-chip">1ST PLACE / 100K+</span>
-            <span class="sc-chip">MINISTRY OF FINANCE</span>
-            <span class="sc-chip">AICTE RECOGNIZED</span>
-            <span class="sc-chip">₹1 LAKH CASH AWARD</span>
-          </div>
-        </div>
+        </article>
 
         <!-- Card 3: GFG Leadership -->
-        <div class="stack-card tilt-card" data-tilt>
-          <div class="sc-header">
-            <span class="sc-tag">03 // EXECUTIVE LEADERSHIP</span>
-            <span class="sc-badge">COMMUNITY ARCHITECT</span>
+        <article class="sticky-card-item tilt-card" data-card-index="2" style="--card-index: 2;">
+          <div class="sc-inner-grid">
+            <div class="sc-content-col">
+              <div class="sc-header">
+                <span class="sc-tag">03 // EXECUTIVE LEADERSHIP</span>
+                <span class="sc-badge">COMMUNITY ARCHITECT</span>
+              </div>
+              <h3 class="sc-title">Chief Executive Officer &bull; <span class="cyan">GeeksforGeeks LPU</span></h3>
+              <p class="sc-body">Headed the official GeeksforGeeks Student Chapter at Lovely Professional University. Directed and executed <strong>20+ national technical hackathons, workshops, and coding arenas</strong>, mentoring 5,000+ developers and scaling community participation across India.</p>
+              
+              <div class="sc-tags-row">
+                <span class="sc-chip">5,000+ DEVELOPERS REACH</span>
+                <span class="sc-chip">20+ HACKATHONS DIRECTED</span>
+                <span class="sc-chip">TECHNICAL MENTORSHIP</span>
+                <span class="sc-chip">GOOGLE CERTIFIED ANALYST</span>
+              </div>
+
+              <div class="sc-footer">
+                <div class="sc-pill">
+                  <span class="pill-dot"></span>
+                  <span>Executive Chapter Lead &bull; 5,000+ Students Mentored &bull; 20+ National Events</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="sc-visual-col">
+              <div class="sc-photo-frame">
+                <img src="assets/images/pedigree_gfg_leadership.jpg" alt="GeeksforGeeks Chapter Leadership and National Hackathon Stage" class="sc-photo-img" loading="lazy">
+                <div class="sc-photo-overlay">
+                  <div class="sc-photo-badge">
+                    <span class="photo-pulse-dot"></span>
+                    <span>EXECUTIVE CHAPTER LEAD</span>
+                  </div>
+                  <div class="sc-photo-caption">GeeksforGeeks LPU Student Chapter &bull; 20+ National Hackathons &amp; Arenas</div>
+                </div>
+              </div>
+            </div>
           </div>
-          <h3 class="sc-title">Chief Executive Officer &bull; <span class="cyan">GeeksforGeeks LPU</span></h3>
-          <p class="sc-body">Headed the official GeeksforGeeks Student Chapter at Lovely Professional University. Directed and executed <strong>20+ national technical hackathons, workshops, and coding arenas</strong>, mentoring 5,000+ developers and scaling community participation across India.</p>
-          <div class="sc-tags-row">
-            <span class="sc-chip">5,000+ COMMUNITY</span>
-            <span class="sc-chip">20+ HACKATHONS EXECUTED</span>
-            <span class="sc-chip">TECHNICAL MENTORSHIP</span>
-            <span class="sc-chip">GOOGLE CERTIFIED ANALYST</span>
+        </article>
+
+        <!-- Card 4: Touchless Vision & Applied Intelligence -->
+        <article class="sticky-card-item tilt-card" data-card-index="3" style="--card-index: 3;">
+          <div class="sc-inner-grid">
+            <div class="sc-content-col">
+              <div class="sc-header">
+                <span class="sc-tag">04 // APPLIED INTELLIGENCE</span>
+                <span class="sc-badge">SPATIAL CV // 60FPS</span>
+              </div>
+              <h3 class="sc-title">Real-Time Spatial Vision &bull; <span class="cyan">Touchless Human Interfaces</span></h3>
+              <p class="sc-body">Engineering edge-computed computer vision architectures that interpret hand gestures, landmark tracking, and depth fields at 60 FPS in pure browser WebGL/WebGPU. Zero proprietary hardware required—transforming ordinary webcams into spatial computing surfaces.</p>
+              
+              <div class="sc-tags-row">
+                <span class="sc-chip">TOUCHLESS CV 60FPS</span>
+                <span class="sc-chip">MEDIAPIPE &amp; TENSORFLOW.JS</span>
+                <span class="sc-chip">WEBGL POINT CLOUDS</span>
+                <span class="sc-chip">LOW-LATENCY INFERENCE</span>
+              </div>
+
+              <div class="sc-footer">
+                <div class="sc-pill">
+                  <span class="pill-dot"></span>
+                  <span>Touchless Vision Lab &bull; Pure Browser WebGL / WebGPU &bull; Zero Hardware Latency</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="sc-visual-col">
+              <div class="sc-photo-frame">
+                <img src="assets/images/philosophy_spatial_analytics.jpg" alt="Real-Time Spatial Analytics & Touchless Vision Telemetry" class="sc-photo-img" loading="lazy">
+                <div class="sc-photo-overlay">
+                  <div class="sc-photo-badge">
+                    <span class="photo-pulse-dot"></span>
+                    <span>EDGE SPATIAL VISION</span>
+                  </div>
+                  <div class="sc-photo-caption">Real-Time 3D Landmark Tracking &bull; 60FPS Touchless Control</div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        </article>
+
       </div>
     </section>
 
     <!-- ═════════════════════════════════════════════════════════════════
-         STAGE 4: PINNED HORIZONTAL 3D PROJECTS SHOWCASE (HADAKA STYLE)
+         STAGE 4: 3D INTERACTIVE PROJECT FOLIO & REPOSITORY CHASSIS
          ═════════════════════════════════════════════════════════════════ -->
-    <section class="horizontal-projects-outer" id="projects">
-      <div class="h-projects-header">
-        <div>
-          <p class="kicker">02 // SELECTED WORKS</p>
+    <section class="projects-book-section" id="projects">
+      <!-- Section Header HUD -->
+      <div class="book-section-header gsap-reveal">
+        <div class="bsh-left">
+          <div class="sc-tag">02 // SELECTED WORKS &bull; 3D INTERACTIVE FOLIO</div>
           <h2 class="hadaka-giant-title">Flagship <span class="cyan">Repositories</span></h2>
+          <p class="hadaka-lead">Interactive 3D Engineering Folio. Flip through the physical curved pages, drag the titanium magnifier to inspect architecture schematics, or launch live deployments.</p>
         </div>
-        <div class="h-nav-controls">
-          <div class="h-scroll-hint">
-            <span class="hint-pulse"></span>
-            <span>SCROLL OR CLICK TO EXPLORE &rarr;</span>
-          </div>
-          <div class="h-nav-btns">
-            <button id="h-prev-btn" class="h-nav-arrow" title="Previous Project">&larr;</button>
-            <button id="h-next-btn" class="h-nav-arrow" title="Next Project">&rarr;</button>
-          </div>
+        <div class="bsh-status-badge">
+          <span class="pulse-dot"></span>
+          <span>5 REPOSITORIES LOADED &bull; DRAGGABLE OPTICAL LOUPE</span>
         </div>
       </div>
 
-      <div class="h-projects-viewport" id="h-projects-viewport">
-        <div class="h-projects-track" id="h-projects-track">
+      <!-- 3D Book Experience Wrap -->
+      <div class="sb-wrap" id="sbWrap">
+        <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+          <filter id="sb-mblur-1"><feGaussianBlur stdDeviation="4 0"/></filter>
+          <filter id="sb-mblur-2"><feGaussianBlur stdDeviation="12 0"/></filter>
+        </svg>
 
-          <!-- Project 01: InsightForge -->
-          <article class="h-project-card tilt-card" data-tilt data-project="insightforge">
-            <div class="hp-num-watermark">01</div>
-            <div class="hp-meta">
-              <span class="hp-tag">MULTI-AGENT AI // FULL-STACK</span>
-              <span class="hp-date">JUN 2026 - JUL 2026</span>
-            </div>
-            <h3 class="hp-title">InsightForge</h3>
-            <p class="hp-subtitle">Multi-Agent Business Intelligence &amp; Autonomous SQL Engine</p>
-            <p class="hp-desc">End-to-end data ingestion pipeline with CSV parsing, column normalization, schema inference, and SQLite persistence. Event-driven multi-agent orchestration covering planning, SQL generation, validation, and real-time WebSocket traces.</p>
-            
-            <div class="hp-tech-stack">
-              <span>React</span>
-              <span>FastAPI</span>
-              <span>Multi-Agent LLM</span>
-              <span>WebSockets</span>
-              <span>SQLite</span>
-              <span>Docker</span>
-            </div>
+        <div class="sb-stage" id="sbStage">
+          <!-- Previous Page Arrow -->
+          <button class="sb-arrow left" id="sbLeft" aria-label="previous page" title="Turn to Previous Page">
+            <svg viewBox="0 0 14 44" width="14" height="44" fill="none" aria-hidden="true">
+              <polyline points="11,3 3,22 11,41" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
 
-            <div class="hp-actions">
-              <button class="hp-btn run-sim-btn" data-sim="insightforge">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                <span>RUN AGENT SIMULATOR</span>
-              </button>
-            </div>
-          </article>
+          <!-- 3D Perspectival Stage -->
+          <div class="sb-3d" id="sb3d">
+            <div class="sb-tilt" id="sbTilt">
+              <!-- Cyber Ambient & Contact Shadows -->
+              <div class="sb-cast ambient" aria-hidden="true"></div>
+              <div class="sb-cast contact" aria-hidden="true"></div>
+              <div class="sb-cast hair" aria-hidden="true"></div>
+              
+              <!-- Realistic Book Chassis Frame (Back cover / binding) -->
+              <div class="sb-chassis" aria-hidden="true"></div>
 
-          <!-- Project 02: CareerPlus.cloud -->
-          <article class="h-project-card tilt-card" data-tilt data-project="careerplus">
-            <div class="hp-num-watermark">02</div>
-            <div class="hp-meta">
-              <span class="hp-tag">SAAS // COMPUTER VISION // AI</span>
-              <span class="hp-date">JUN 2024 - DEC 2024</span>
-            </div>
-            <h3 class="hp-title">CareerPlus.cloud</h3>
-            <p class="hp-subtitle">AI Video Interview SaaS &amp; Intelligent ATS Matcher</p>
-            <p class="hp-desc">Full-stack SaaS-based AI Video Interview Platform using the M.E.R.N stack. Built schema validation with React Hook Forms &amp; Zod, shadcn and Framer Motion, JWT cookie session management, MongoDB Aggregations, and Stripe billing.</p>
-            
-            <div class="hp-tech-stack">
-              <span>React</span>
-              <span>Node.js</span>
-              <span>Express</span>
-              <span>MongoDB</span>
-              <span>Framer Motion</span>
-              <span>Stripe API</span>
-              <span>Zod</span>
+              <!-- Book Active Spread -->
+              <div class="sb-book" id="sbBook">
+                <!-- Rendered dynamically by project-book.js -->
+              </div>
             </div>
 
-            <div class="hp-actions">
-              <button class="hp-btn run-sim-btn" data-sim="careerplus">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                <span>TEST RESUME PARSER</span>
-              </button>
-            </div>
-          </article>
-
-          <!-- Project 03: AirCanvas -->
-          <article class="h-project-card tilt-card" data-tilt data-project="aircanvas">
-            <div class="hp-num-watermark">03</div>
-            <div class="hp-meta">
-              <span class="hp-tag">BROWSER CV // SPATIAL GESTURES</span>
-              <span class="hp-date">APR 2026 - APR 2026</span>
-            </div>
-            <h3 class="hp-title">AirCanvas</h3>
-            <p class="hp-subtitle">Touchless 21-Landmark In-Air Gesture Whiteboard</p>
-            <p class="hp-desc">Touchless digital whiteboard utilizing JavaScript, HTML Canvas, and MediaPipe Hands detecting 21 hand landmarks directly in-browser. Features real-time gesture drawing, erasing, coordinate smoothing, and 60fps tracking.</p>
-            
-            <div class="hp-tech-stack">
-              <span>MediaPipe Hands</span>
-              <span>JavaScript</span>
-              <span>HTML5 Canvas</span>
-              <span>Tailwind CSS</span>
-              <span>Real-Time CV</span>
+            <!-- Magnified Cloned Layer (Inside Lens) -->
+            <div class="zoomwrap" id="zoomWrap" aria-hidden="true">
+              <div class="zoominner" id="zoomInner"></div>
             </div>
 
-            <div class="hp-actions">
-              <button class="hp-btn run-sim-btn" data-sim="aircanvas">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                <span>TEST 21-PT SKELETON</span>
-              </button>
+            <!-- Draggable Optical Loupe -->
+            <div class="loupe on" id="loupe" title="Drag across the book to inspect">
+              <span class="grip"></span>
+              <span class="ring">
+                <span class="lens" id="loupeLens">
+                  <span class="mag" id="loupeMag"></span>
+                </span>
+              </span>
             </div>
-          </article>
+          </div>
 
-          <!-- Project 04: Netflix Analytics -->
-          <article class="h-project-card tilt-card" data-tilt data-project="netflix">
-            <div class="hp-num-watermark">04</div>
-            <div class="hp-meta">
-              <span class="hp-tag">DATA SCIENCE // STRATEGIC EDA</span>
-              <span class="hp-date">AUG 2025 - AUG 2025</span>
-            </div>
-            <h3 class="hp-title">Netflix Global EDA</h3>
-            <p class="hp-subtitle">Strategic Content &amp; Distribution Analytics</p>
-            <p class="hp-desc">Exploratory data analysis on Netflix's global content catalog using Python (Pandas, Matplotlib, Seaborn). Uncovered release patterns, international distribution trends, and user engagement drivers for executive content strategy.</p>
-            
-            <div class="hp-tech-stack">
-              <span>Python</span>
-              <span>Pandas</span>
-              <span>NumPy</span>
-              <span>Matplotlib</span>
-              <span>Seaborn</span>
-              <span>Statistical Modeling</span>
-            </div>
+          <!-- Next Page Arrow -->
+          <button class="sb-arrow right" id="sbRight" aria-label="next page" title="Turn to Next Page">
+            <svg viewBox="0 0 14 44" width="14" height="44" fill="none" aria-hidden="true">
+              <polyline points="3,3 11,22 3,41" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
 
-            <div class="hp-actions">
-              <button class="hp-btn run-sim-btn" data-sim="netflix">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                <span>RUN PREDICTIVE EDA</span>
-              </button>
-            </div>
-          </article>
+        <!-- Project Caption & Folio Counter -->
+        <div class="sb-captions" id="sbCaptions"></div>
 
+        <!-- Book Control Toolbar -->
+        <div class="sb-tools" role="group" aria-label="book view controls">
+          <button class="tool" id="zOut" aria-label="zoom out" title="Zoom Out (–)">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+              <circle cx="8.6" cy="8.6" r="5.6"/>
+              <path d="M12.8 12.8 17.4 17.4M6.2 8.6h4.8"/>
+            </svg>
+          </button>
+          <span class="zoom-read" id="zRead">100%</span>
+          <button class="tool" id="zIn" aria-label="zoom in" title="Zoom In (+)">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+              <circle cx="8.6" cy="8.6" r="5.6"/>
+              <path d="M12.8 12.8 17.4 17.4M6.2 8.6h4.8M8.6 6.2v4.8"/>
+            </svg>
+          </button>
+          <span class="tool-sep" aria-hidden="true"></span>
+          <button class="tool" id="loupeBtn" aria-label="toggle magnifier" aria-pressed="true" title="Toggle Magnifier Loupe">
+            <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+              <circle cx="8.8" cy="8.8" r="5.8"/>
+              <path d="M13 13l4.4 4.4"/>
+              <path d="M6.4 7.2a3.2 3.2 0 0 1 2.4-1.4" opacity=".55"/>
+            </svg>
+          </button>
+        </div>
+
+        <p class="sb-hint" id="sbHint">CLICK OR DRAG THE PAGE TO TURN &bull; DRAG THE LOUPE TO MAGNIFY ARCHITECTURE &bull; USE &larr; &rarr; KEYS</p>
+
+        <!-- Project Index Directory / Folio Plates -->
+        <div class="sb-folio-plates" id="plates">
+          <div class="plates-bar-header">
+            <span class="pb-kicker">ENGINEERING FOLIO DIRECTORY // SELECT TO FLIP</span>
+            <span class="pb-counter" id="pbCounter">01 / 05</span>
+          </div>
+          <ol class="plate-list" id="plateList">
+            <!-- 5 projects populated dynamically by project-book.js -->
+          </ol>
         </div>
       </div>
     </section>
@@ -598,6 +714,10 @@
           <button class="sim-pill" data-cmd="careerplus">
             <span class="sp-dot"></span>
             <span>04 // CAREERPLUS RESUME ATS PIPELINE</span>
+          </button>
+          <button class="sim-pill" data-cmd="orbit">
+            <span class="sp-dot"></span>
+            <span>05 // ORBIT DATA OPS CONTROL TOWER</span>
           </button>
         </div>
       </div>
@@ -886,5 +1006,6 @@
   <!-- Application Logic -->
   <script type="module" src="model-viewer.js"></script>
   <script src="main.js?v=hadaka6"></script>
+  <script src="project-book.js"></script>
 </body>
 </html>

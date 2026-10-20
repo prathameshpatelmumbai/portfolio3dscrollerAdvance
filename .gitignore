@@ -14,3 +14,9 @@ ehthumbs.db
 Desktop.ini
 $RECYCLE.BIN/
 .DS_Store
+
+# Local tools & brag artifacts
+brag-output/
+hyperframes.cmd
+scripts/
+

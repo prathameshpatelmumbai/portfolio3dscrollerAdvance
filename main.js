@@ -456,7 +456,72 @@
       );
     });
 
+    // Initialize Sticky Scroll Photo Cards (Componentry UI Pattern)
+    initStickyScrollCards();
+
     ScrollTrigger.refresh();
+  }
+
+  /* ── Stage 3: Sticky Scroll Cards Engine (Componentry UI Pattern) ──── */
+  function initStickyScrollCards() {
+    const stack = document.getElementById('stickyCardsStack');
+    if (!stack) return;
+
+    const cards = Array.from(stack.querySelectorAll('.sticky-card-item'));
+    if (!cards.length) return;
+
+    const activeNumEl = document.getElementById('scActiveNum');
+
+    // Dynamic 3D Cursor Spotlight on each card
+    cards.forEach((card) => {
+      card.addEventListener('pointermove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!prefersReducedMotion && typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      cards.forEach((card, index) => {
+        if (index === cards.length - 1) return;
+        const nextCard = cards[index + 1];
+
+        // Progressive depth scaling & dimming as following cards stack on top
+        ScrollTrigger.create({
+          trigger: nextCard,
+          start: 'top 85%',
+          end: 'top 120px',
+          scrub: 0.3,
+          onUpdate: (self) => {
+            const p = self.progress;
+            const scale = 1 - p * 0.055;
+            const brightness = 1 - p * 0.3;
+            const blur = p * 1.5;
+            card.style.transform = `scale(${scale})`;
+            card.style.filter = `brightness(${brightness}) blur(${blur}px)`;
+          }
+        });
+      });
+
+      // Update telemetry active card number as user scrolls through stack
+      cards.forEach((card, index) => {
+        ScrollTrigger.create({
+          trigger: card,
+          start: 'top 45%',
+          end: 'bottom 45%',
+          onEnter: () => {
+            if (activeNumEl) activeNumEl.textContent = String(index + 1).padStart(2, '0');
+          },
+          onEnterBack: () => {
+            if (activeNumEl) activeNumEl.textContent = String(index + 1).padStart(2, '0');
+          }
+        });
+      });
+    }
   }
 
   /* ── Hadaka Feature 1: Pinned Horizontal Projects Rail (Multi-Mode) ─ */
@@ -659,6 +724,38 @@
         { type: 'agent', text: '[PAYMENTS] Stripe webhook verified: Enterprise Recruiter Pipeline tier activated.' },
         { type: 'success', text: '✓ Candidate ATS pipeline verified with Highest Distinction (Top 1% Percentile).' }
       ]
+    },
+    netflix: {
+      title: 'prathamesh-patel@analytics-lab:~/netflix-eda$ python run_eda.py --mode=strategic',
+      cmd: 'netflix-eda --catalog=8800-titles --clusters=kmeans --predictive-density=release-q4',
+      latency: '12ms',
+      agents: 'Python 3.11 / Pandas / Seaborn',
+      memory: '384MB / Statistical Engine',
+      lines: [
+        { type: 'info', text: '[NETFLIX EDA] Ingesting 8,800+ global movie and TV series metadata records...' },
+        { type: 'agent', text: '[DISTRIBUTION] Calculating multi-country clustering: US (72% Movies), India (88% Movies), South Korea (68% TV Series).' },
+        { type: 'code', text: 'df.groupby(["country", "type"])["show_id"].count().unstack().plot(kind="bar", stacked=True)' },
+        { type: 'info', text: '[TEMPORAL DENSITY] Release timing analysis reveals strong Q4 holiday release concentration (+42% engagement).' },
+        { type: 'agent', text: '[STRATEGY] Identified high-ROI acquisition cluster in multilingual international episodic formats.' },
+        { type: 'success', text: '✓ Strategic Exploratory Data Analysis compiled: 99.5% statistical confidence.' }
+      ]
+    },
+    orbit: {
+      title: 'prathamesh-patel@orbit:~/control-tower$ python -m orbit.agents.crew --stream=3d-lineage',
+      cmd: 'orbit --telemetry=3d-spatial --langgraph=directed-cycle --incident-recovery=live',
+      latency: '4.8ms',
+      agents: '6/6 Specialized (Sentinel, Diagnostician, Surgeon, Auditor, Scribe, Strategist)',
+      memory: '1.2GB / pgvector + LangGraph',
+      lines: [
+        { type: 'info', text: '[ORBIT] Initializing Autonomous Data Operations Control Tower...' },
+        { type: 'warning', text: '[SENTINEL] Schema divergence detected in Bronze Banking stream within 400ms: column "tx_amt" changed.' },
+        { type: 'agent', text: '[DIAGNOSTICIAN] Traversing upstream lineage. Cosine match (98.4%) cited in pgvector incident memory.' },
+        { type: 'code', text: 'ALTER TABLE bronze_banking_transactions ADD COLUMN tx_amount NUMERIC GENERATED ALWAYS AS (tx_amt);' },
+        { type: 'agent', text: '[SURGEON] Patch synthesized in isolated sandbox. 24 poisoned records routed to quarantine.' },
+        { type: 'info', text: '[AUDITOR] Great Expectations suite passed: 100% invariant check pass rate. Clearing alert.' },
+        { type: 'agent', text: '[STRATEGIST] Incident resolved in 4.8s MTTR. Downtime loss prevented: $18,450.' },
+        { type: 'success', text: '★ Node restored to healthy emerald state. Postmortem vector embedded into pgvector memory.' }
+      ]
     }
   };
 
@@ -709,6 +806,9 @@
     });
   }
 
+  // Expose for external calls (e.g. 3D Project Book triggers)
+  window.runPortfolioSimulation = runSimulation;
+
   function initSimulator() {
     // Simulator Pills Click Handlers
     document.querySelectorAll('.sim-pill').forEach(btn => {
@@ -735,13 +835,17 @@
         runSimulation('sih');
       } else if (val === '4' || val.includes('career') || val.includes('resume') || val.includes('ats')) {
         runSimulation('careerplus');
+      } else if (val === '5' || val.includes('orbit') || val.includes('tower') || val.includes('galaxy') || val.includes('lineage')) {
+        runSimulation('orbit');
+      } else if (val.includes('netflix') || val.includes('eda')) {
+        runSimulation('netflix');
       } else if (val === 'clear') {
         const streamEl = document.getElementById('sim-term-stream');
         if (streamEl) streamEl.innerHTML = '<div class="stream-line info">Terminal cleared. Ready for next command.</div>';
       } else if (val === 'help') {
         const streamEl = document.getElementById('sim-term-stream');
         if (streamEl) {
-          streamEl.innerHTML += '<div class="stream-line info">Available commands: [1: insightforge, 2: aircanvas, 3: sih, 4: careerplus, clear, help]</div>';
+          streamEl.innerHTML += '<div class="stream-line info">Available commands: [1: insightforge, 2: aircanvas, 3: sih, 4: careerplus, 5: orbit, netflix, clear, help]</div>';
         }
       } else {
         const streamEl = document.getElementById('sim-term-stream');
